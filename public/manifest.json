@@ -1,0 +1,65 @@
+{
+  "theme_color": "#FFFEFA",
+  "background_color": "#1B1A19",
+  "icons": [
+    {
+      "purpose": "maskable",
+      "sizes": "192x192",
+      "src": "/img/icon-192x192.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "192x192",
+      "src": "/img/icon-192x192.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "sizes": "180x180",
+      "src": "/img/icon-180x180.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "180x180",
+      "src": "/img/icon-180x180.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "sizes": "128x128",
+      "src": "/img/icon-128x128.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "128x128",
+      "src": "/img/icon-128x128.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "sizes": "64x64",
+      "src": "/img/icon-64x64.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "64x64",
+      "src": "/img/icon-64x64.png",
+      "type": "image/png"
+    }
+  ],
+  "orientation": "any",
+  "display": "standalone",
+  "dir": "ltr",
+  "lang": "en-US",
+  "name": "Norman Lumilaan",
+  "short_name": "Norman Lumilaan",
+  "start_url": "/",
+  "scope": "/",
+  "description": "Unleash the power of code and technology",
+  "id": "/",
+  "prefer_related_applications": false
+}
