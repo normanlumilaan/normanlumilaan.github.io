@@ -19,13 +19,49 @@ export default defineConfig(({ mode }) => {
       name: "Norman Lumilaan",
       homeUrl: env.VITE_APP_HOME_URL,
       email: "diiselkytus@gmail.com",
-      title: "Let's work together! - Norman Lumilaan",
       description:
         "Unleash the power of code and technology to achieve your dreams!",
       image: `${env.VITE_APP_HOME_URL}/img/og_img-1200x630.png`,
+      title: "Let's do great things together!",
     },
     home: {
-      title: "Home - Norman Lumilaan",
+      path: "",
+      intro: {
+        title: "Norman Lumilaan",
+        body: "",
+      },
+      info: {
+        title: "Info",
+        body: "If you're ready to take your business to new heights, I'd love the opportunity to connect and explore how we can work together. Let's unleash the power of code and technology to achieve your dreams!",
+      },
+      services: {
+        title: "Services",
+        body: [
+          "TypeScript",
+          "Node.js",
+          "SCSS",
+          "Python",
+          "SQL",
+          "PHP",
+          "React",
+        ],
+      },
+      contacts: {
+        title: "Contacts",
+        body: [
+          { label: "Email", url: "diiselkytus@gmail.com" },
+          {
+            label: "GitHub",
+            url: "https://www.linkedin.com/in/norman-lumilaan/",
+          },
+          { label: "LinkedIn", url: "https://github.com/normanlumilaan" },
+        ],
+      },
+    },
+    error404: {
+      title: "404 Not Found",
+      path: "/404.html",
+      body: "Sometimes things don’t go as planned, and that’s perfectly fine. Take a deep breath. We’re here to guide you back.",
     },
   };
 
