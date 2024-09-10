@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "homepage": "https://normanlumilaan.github.io",
-  "types": "types",
   "type": "module",
   "scripts": {
     "dev": "vite",
