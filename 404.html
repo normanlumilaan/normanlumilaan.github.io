@@ -10,7 +10,7 @@
   <link rel="apple-touch-icon" href="/img/icon-180x180.png" sizes="180x180">
   <link rel="icon" href="/img/icon-192x192.png" sizes="192x192">
   <link rel="manifest" crossorigin="anonymous" href="/manifest.json" />
-  <%- include('./src/templates/partials/og', {...app, ...error404}); %>
+  <%- include('./src/templates/partials/seo', {...app.meta, ...error404.meta}); %>
 </head>
 
 <body>

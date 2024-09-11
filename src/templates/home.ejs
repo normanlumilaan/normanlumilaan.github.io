@@ -8,7 +8,7 @@
           <img src="/img/eye.png" width="200" height="200" alt="eye" class="section__fig-img">
         </figure>
         <h1 class="section__heading" id="intro-heading">
-          <%= intro.title %>
+          <%= content.intro.title %>
         </h1>
       </div>
     </div>
@@ -18,10 +18,10 @@
     <div class="section__inner">
       <div class="fake-ed">
         <h2 class="section__heading" id="info-heading">
-          <%= info.title %>
+          <%= content.info.title %>
         </h2>
         <p>
-          <%= info.body %>
+          <%= content.info.body %>
         </p>
       </div>
     </div>
@@ -31,10 +31,10 @@
     <div class="section__inner">
       <div class="fake-ed">
         <h2 class="section__heading" id="service-heading">
-          <%= services.title %>
+          <%= content.services.title %>
         </h2>
         <ul class="list service__list" role="list" aria-label="Programming languages and tools">
-          <% services.body.forEach((service)=> { %>
+          <% content.services.body.forEach((service)=> { %>
             <li class="list__item service__item">
               <%= service %>
             </li>
@@ -53,11 +53,11 @@
           <img src="/img/mouth.png" width="200" height="200" alt="hands" class="section__fig-img">
         </figure>
         <h2 class="section__heading" id="contact-heading">
-          <%= contacts.title %>
+          <%= content.contacts.title %>
         </h2>
         <ul class="list" role="list" aria-label="Contact methods">
 
-          <% contacts.body.forEach(function(contact) { %>
+          <% content.contacts.body.forEach(function(contact) { %>
             <li class="list__item">
               <a href="<%= contact.url %>" title="<%= contact.label %>" aria-label="<%= contact.label %>"
                 class="list__link">
