@@ -2,13 +2,13 @@
 <html lang="en-US">
 
 <head>
-  <%- include('./src/templates/partials/head'); %>
-  <%- include('./src/templates/partials/seo', { ...home.meta }); %>
+  <%- include('./src/templates/partials/head', home.meta); %>
+  <%- include('./src/templates/partials/seo', home.meta); %>
   <link rel="stylesheet" href="./src/index.css">
 </head>
 
 <body>
-  <%- include('./src/templates/home', {...app, ...home}); %>
+  <%- include('./src/templates/home', home); %>
   <%- include('./src/templates/partials/footer', app); %>
   <%- include('./src/templates/partials/svg-definitions'); %>
   <script type="module" src="./src/index.ts"></script>
