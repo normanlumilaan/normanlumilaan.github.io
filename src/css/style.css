@@ -37,8 +37,15 @@ h2 {
   font-weight: inherit;
 }
 
-a,
-.button {
+h1,
+h2 {
+  margin-top: var(--line-height);
+  margin-bottom: var(--line-height);
+}
+
+a {
+  flex-shrink: 1;
+  flex-basis: auto;
   min-width: 44px;
   display: inline-flex;
   align-items: center;
@@ -51,14 +58,12 @@ a,
   transition: background-color 0.3s, color 0.3s;
 }
 
-a:hover,
-.button:hover {
+a:hover {
   color: var(--color-accent-secondary);
   text-decoration: none;
 }
 
-a:focus,
-.button:focus {
+a:focus {
   outline: 3px solid var(--color-accent-primary);
   outline-offset: 2px;
 }
@@ -66,6 +71,12 @@ a:focus,
 ul {
   list-style-type: none;
   padding-left: 0;
+}
+
+p {
+  max-width: 66ch;
+  margin: 0;
+  margin-bottom: var(--line-height);
 }
 
 img {
@@ -145,11 +156,6 @@ svg {
   justify-content: center;
   align-items: center;
   height: 100%;
-}
-
-.section__heading {
-  margin-top: var(--line-height);
-  margin-bottom: var(--line-height);
 }
 
 .section__fig {
