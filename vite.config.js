@@ -26,9 +26,6 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
-    plugins: [
-      // With Data
-      ViteEjsPlugin(getData(homeUrl)),
-    ],
+    plugins: [ViteEjsPlugin(getData(homeUrl))],
   };
 });
