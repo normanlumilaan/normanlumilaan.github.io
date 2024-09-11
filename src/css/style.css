@@ -96,6 +96,11 @@ svg {
   white-space: nowrap;
 }
 
+.list {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 .icon {
   display: inline-block;
   fill: none;
@@ -143,6 +148,7 @@ svg {
 }
 
 .section__heading {
+  margin-top: var(--line-height);
   margin-bottom: var(--line-height);
 }
 
