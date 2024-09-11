@@ -21,14 +21,11 @@ export default defineConfig(({ mode }) => {
     build: {
       rollupOptions: {
         input: {
-          main: path.resolve(__dirname, "index.html"),
+          home: path.resolve(__dirname, "index.html"),
           page404: path.resolve(__dirname, "404.html"),
         },
       },
     },
-    plugins: [
-      // With Data
-      ViteEjsPlugin(getData(homeUrl)),
-    ],
+    plugins: [ViteEjsPlugin(getData(homeUrl))],
   };
 });

@@ -1,52 +1,49 @@
-import { data as home } from "./home";
-import { data as error404 } from "./error404";
+import { data as home } from "./pages/home";
+import { data as error404 } from "./pages/error404";
 
-export interface PageMeta {
+interface PageMeta {
+  /** Page title */
   title: string;
-  /** Path starting with "/" or empty string */
-  path: string;
-  /** Page description */
+  /** Page short description */
   description: string;
-  /** Open Graph image path */
+  /** Page image for e.g. open graph. Relative url to app home url. */
   image: string;
+  /** Page path */
+  path: string;
 }
 
 export interface PageData {
-  /** Page meta data for Open Graph etc */
   meta: PageMeta;
-  /** Page content */
-  content: { [key: string]: unknown };
-  /** Arbitrary */
-  [key: string]: unknown;
+  content: object | unknown[];
 }
 
 export interface AppData {
-  /** App name */
   name: string;
-  /** home url */
   homeUrl: string;
-  /** Admin email */
   email: string;
-  /** Meta data */
-  meta: PageMeta;
 }
 
-export const meta: PageMeta = {
-  path: "",
-  description:
-    "Unleash the power of code and technology to achieve your dreams!",
-  image: `/img/og_img-1200x630.png`,
-  title: "Let's do great things together!",
-};
+export interface TemplateData {
+  app: AppData;
+  [key: string]: PageData | AppData;
+}
 
-export function getData(homeUrl: string): any {
+export function getData(homeUrl: string): TemplateData {
+  const app: AppData = {
+    name: "Norman Lumilaan",
+    homeUrl: homeUrl,
+    email: "diiselkytus@gmail.com",
+  };
+
+  /**
+   * The original idea was to create template data object by merging global app data
+   * and requested page data (e.g. home) objects and then passing it to template rendering,
+   * nothing unheard right? Since current implementation of vite-plugin-ejs
+   * takes whole data object at once (thus making all data available to templates at
+   * all times no isolation ☹️ ) there is no point to duplicate app object in each page.
+   */
   return {
-    app: {
-      name: "Norman Lumilaan",
-      homeUrl: homeUrl,
-      email: "diiselkytus@gmail.com",
-      meta,
-    },
+    app,
     home,
     error404,
   };

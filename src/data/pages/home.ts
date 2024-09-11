@@ -1,4 +1,4 @@
-import { PageData } from "./data";
+import { PageData } from "../data";
 
 export const data: PageData = {
   meta: {
