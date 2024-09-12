@@ -1,26 +1,16 @@
-import { Animation } from "./AnimateOnScroll";
+import { type AnimationStrategy } from "./Animation";
 
-interface AnimationOptions {
-  id: string;
-}
-
-const defaults: AnimationOptions = {
-  id: "fade-on-scroll",
-};
-
-export class FadeOnScroll implements Animation {
-  private id: string;
+export class FadeOnScroll implements AnimationStrategy {
+  readonly name = "fade-on-scroll";
 
   itemScrollHeight: number = 0;
   totalScrollHeight: number = 0;
 
   constructor(
-    private scrollableElem: HTMLElement,
     private itemsContainerElem: HTMLElement,
-    private itemElems: NodeListOf<HTMLElement>,
-    opts?: AnimationOptions
+    private itemElems: NodeListOf<HTMLElement>
   ) {
-    this.id = opts?.id || defaults.id;
+    this.scrollY = this.scrollY.bind(this);
   }
 
   private calculateDimensions(): void {
@@ -44,36 +34,21 @@ export class FadeOnScroll implements Animation {
   }
 
   private setupDomElements(): void {
-    this.scrollableElem.classList.add(this.id);
-    this.itemsContainerElem.classList.add(`${this.id}__container`);
-
-    this.scrollableElem.dataset.animation = this.id;
-    this.itemsContainerElem.dataset.animation = `${this.id}-container`;
-
-    this.scrollableElem.style.setProperty(
-      "height",
-      `${this.totalScrollHeight}px`
-    );
-
-    Object.assign(this.itemsContainerElem!.style, {
-      position: "sticky",
-      top: 0,
-    });
+    this.itemsContainerElem.classList.add(`${this.name}__container`);
 
     for (let i = 0; i < this.itemElems.length; i++) {
       const item = this.itemElems[i];
-      item.classList.add(`${this.id}__item`);
-      item.dataset.animation = `${this.id}-item`;
+      item.classList.add(`${this.name}__frame`);
       this.setItemVisibility(item, i > 0 ? 0 : 1);
     }
   }
 
-  handleScrollY(scrollPosition: number): void {
-    if (scrollPosition < 0) return;
+  scrollY(scrollTop: number): void {
+    if (scrollTop < 0) return;
 
-    const activeItemIndex = Math.floor(scrollPosition / this.itemScrollHeight);
+    const activeItemIndex = Math.floor(scrollTop / this.itemScrollHeight);
     const itemScrollProgress =
-      (scrollPosition % this.itemScrollHeight) / this.itemScrollHeight;
+      (scrollTop % this.itemScrollHeight) / this.itemScrollHeight;
 
     for (let i = 0; i < this.itemElems.length; i++) {
       const item = this.itemElems[i];
