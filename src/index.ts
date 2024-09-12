@@ -35,6 +35,6 @@ window.addEventListener("load", () => {
 
   const fadeonscroll = new FadeOnScroll(container, items);
   const animation = new Animation(fadeonscroll);
-
+  animation.listenScrollYOn(document);
   animation.init();
 });
