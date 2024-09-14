@@ -30,6 +30,10 @@ export interface TemplateData {
 }
 
 export function getData(homeUrl: string): TemplateData {
+  if (typeof homeUrl !== "string" || homeUrl === "") {
+    throw new Error("'homeUrl' parameter not defined");
+  }
+
   const app: AppData = {
     name: "Norman Lumilaan",
     homeUrl: homeUrl,
