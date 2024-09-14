@@ -14,15 +14,15 @@ export const data: PageData = {
       body: "",
     },
     info: {
-      title: "Info",
-      body: "If you're ready to take your business to new heights, I'd love the opportunity to connect and explore how we can work together. Let's unleash the power of code and technology to achieve your dreams!",
+      title: "Let's make great things together!",
+      body: "If you're ready to take your business to new heights, I’d be excited to connect and explore how we can collaborate. Let's unleash the power of code and technology to achieve your dreams!",
     },
     services: {
       title: "Services",
       body: ["TypeScript", "Node.js", "SCSS", "Python", "SQL", "PHP", "React"],
     },
     contacts: {
-      title: "Contacts",
+      title: "Contact",
       body: [
         { label: "Email", url: "diiselkytus@gmail.com" },
         {

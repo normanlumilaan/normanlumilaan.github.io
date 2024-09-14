@@ -42,7 +42,7 @@ export function getData(homeUrl: string): TemplateData {
    * and requested page data (e.g. home) objects and then passing it to template rendering,
    * nothing unheard right? Since current implementation of vite-plugin-ejs
    * takes whole data object at once (thus making all data available to templates at
-   * all times no isolation ☹️ ) there is no point to duplicate app object in each page.
+   * all times, no isolation ☹️ ) there is no point to duplicate app object in each page.
    */
   return {
     app,
