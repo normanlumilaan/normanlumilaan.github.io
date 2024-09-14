@@ -21,6 +21,7 @@ export interface AppData {
   name: string;
   homeUrl: string;
   email: string;
+  tagline: string;
 }
 
 export interface TemplateData {
@@ -33,6 +34,7 @@ export function getData(homeUrl: string): TemplateData {
     name: "Norman Lumilaan",
     homeUrl: homeUrl,
     email: "diiselkytus@gmail.com",
+    tagline: "Let's make great things together!",
   };
 
   /**
