@@ -3,11 +3,11 @@ import { data as error404 } from "./pages/error404";
 
 interface PageMeta {
   /** Page title */
-  title: string;
+  title: string | null;
   /** Page short description */
-  description: string;
+  description: string | null;
   /** Page image for e.g. open graph. Relative url to app home url. */
-  image: string;
+  image: string | null;
   /** Page path */
   path: string;
 }
