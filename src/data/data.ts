@@ -3,11 +3,11 @@ import { data as error404 } from "./pages/error404";
 
 interface PageMeta {
   /** Page title */
-  title: string;
+  title: string | null;
   /** Page short description */
-  description: string;
+  description: string | null;
   /** Page image for e.g. open graph. Relative url to app home url. */
-  image: string;
+  image: string | null;
   /** Page path */
   path: string;
 }
@@ -21,6 +21,7 @@ export interface AppData {
   name: string;
   homeUrl: string;
   email: string;
+  tagline: string;
 }
 
 export interface TemplateData {
@@ -29,10 +30,15 @@ export interface TemplateData {
 }
 
 export function getData(homeUrl: string): TemplateData {
+  if (typeof homeUrl !== "string" || homeUrl === "") {
+    throw new Error("'homeUrl' parameter not defined");
+  }
+
   const app: AppData = {
     name: "Norman Lumilaan",
     homeUrl: homeUrl,
     email: "diiselkytus@gmail.com",
+    tagline: "Let's make great things together!",
   };
 
   /**
@@ -40,7 +46,7 @@ export function getData(homeUrl: string): TemplateData {
    * and requested page data (e.g. home) objects and then passing it to template rendering,
    * nothing unheard right? Since current implementation of vite-plugin-ejs
    * takes whole data object at once (thus making all data available to templates at
-   * all times no isolation ☹️ ) there is no point to duplicate app object in each page.
+   * all times, no isolation ☹️ ) there is no point to duplicate app object in each page.
    */
   return {
     app,

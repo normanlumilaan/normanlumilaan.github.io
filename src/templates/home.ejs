@@ -60,7 +60,7 @@
           <% content.contacts.body.forEach(function(contact) { %>
           <li class="list__item">
             <% if (contact.url.includes('@')) { %>
-            <a href="mailto:<%= contact.url %>" title="<%= contact.label %>"
+            <a href="mailto:<%= contact.url %>?subject=<%= app.tagline %>" title="<%= contact.label %>"
               aria-label="<%= contact.label %>"><%= contact.label %></a>
             <% } else { %>
             <a href=" <%= contact.url %>" title="<%= contact.label %>" aria-label="<%= contact.label %>">
