@@ -1,23 +1,18 @@
-import { type AnimationStrategy } from "./Animation";
+"use strict";
 
-export class FadeOnScroll implements AnimationStrategy {
+import { ScrollAnimation } from "./ScrollAnimation";
+
+export class FadeOnScroll extends ScrollAnimation {
   readonly name = "fade-on-scroll";
 
-  itemScrollHeight: number = 0;
-  totalScrollHeight: number = 0;
+  private itemScrollHeight: number = 0;
+  private totalScrollHeight: number = 0;
 
   constructor(
-    private itemsContainerElem: HTMLElement,
-    private itemElems: NodeListOf<HTMLElement>
+    private context: HTMLElement,
+    private items: NodeListOf<HTMLElement>
   ) {
-    this.scrollY = this.scrollY.bind(this);
-  }
-
-  private calculateDimensions(): void {
-    this.itemScrollHeight = Math.floor(
-      this.itemElems[0]!.getBoundingClientRect().height
-    );
-    this.totalScrollHeight = this.itemScrollHeight * this.itemElems.length;
+    super();
   }
 
   private setItemVisibility(elem: HTMLElement, opacityRaw: number): void {
@@ -33,25 +28,20 @@ export class FadeOnScroll implements AnimationStrategy {
     });
   }
 
-  private setupDomElements(): void {
-    this.itemsContainerElem.classList.add(`${this.name}__container`);
-
-    for (let i = 0; i < this.itemElems.length; i++) {
-      const item = this.itemElems[i];
-      item.classList.add(`${this.name}__frame`);
-      this.setItemVisibility(item, i > 0 ? 0 : 1);
-    }
+  private calculate() {
+    const itemHeight = Math.floor(this.context.getBoundingClientRect().height);
+    this.itemScrollHeight = itemHeight;
+    this.totalScrollHeight = itemHeight * this.items.length;
   }
 
-  scrollY(scrollTop: number): void {
+  animateScrollY(scrollTop: number): void {
     if (scrollTop < 0) return;
-
     const activeItemIndex = Math.floor(scrollTop / this.itemScrollHeight);
     const itemScrollProgress =
       (scrollTop % this.itemScrollHeight) / this.itemScrollHeight;
 
-    for (let i = 0; i < this.itemElems.length; i++) {
-      const item = this.itemElems[i];
+    for (let i = 0; i < this.items.length; i++) {
+      const item = this.items[i];
       let opacity = 0;
 
       if (i === activeItemIndex) {
@@ -64,8 +54,31 @@ export class FadeOnScroll implements AnimationStrategy {
     }
   }
 
-  init(): void {
-    this.calculateDimensions();
-    this.setupDomElements();
+  init(): boolean {
+    if (this.scrollable === null) {
+      this.scrollable = this.context;
+    }
+
+    this.context.classList.add(`${this.name}__container`);
+
+    for (let i = 0; i < this.items.length; i++) {
+      const item = this.items[i];
+      item.classList.add(`${this.name}__frame`);
+      this.setItemVisibility(item, i > 0 ? 0 : 1);
+    }
+
+    this.calculate();
+
+    if (this.scrollable instanceof HTMLElement) {
+      this.scrollable.style.height = `${this.totalScrollHeight}px`;
+    } else {
+      document.documentElement.style.height = `${this.totalScrollHeight}px`;
+    }
+
+    this.getScrollTop = this.setGetScrollTop(this.scrollable);
+    this.onScrollY();
+    return true;
   }
 }
+
+export default FadeOnScroll;
