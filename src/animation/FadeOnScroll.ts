@@ -5,6 +5,7 @@ import { ScrollAnimation } from "./ScrollAnimation";
 export class FadeOnScroll extends ScrollAnimation {
   readonly name = "fade-on-scroll";
 
+  /** Scroll height of sinlge animation target element */
   private itemScrollHeight: number = 0;
   private totalScrollHeight: number = 0;
 
@@ -15,6 +16,7 @@ export class FadeOnScroll extends ScrollAnimation {
     super();
   }
 
+  /** Set animation target visibility CSS style properties and attributes */
   private setItemVisibility(elem: HTMLElement, opacityRaw: number): void {
     const opacity = opacityRaw.toFixed(2);
     const visibility = opacityRaw === 0 ? "hidden" : "visible";
@@ -28,6 +30,7 @@ export class FadeOnScroll extends ScrollAnimation {
     });
   }
 
+  /** Calculate dimensions */
   private calculate() {
     const itemHeight = Math.floor(
       this.container.getBoundingClientRect().height
