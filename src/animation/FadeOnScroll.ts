@@ -9,7 +9,7 @@ export class FadeOnScroll extends ScrollAnimation {
   private totalScrollHeight: number = 0;
 
   constructor(
-    private context: HTMLElement,
+    private container: HTMLElement,
     private items: NodeListOf<HTMLElement>
   ) {
     super();
@@ -29,7 +29,9 @@ export class FadeOnScroll extends ScrollAnimation {
   }
 
   private calculate() {
-    const itemHeight = Math.floor(this.context.getBoundingClientRect().height);
+    const itemHeight = Math.floor(
+      this.container.getBoundingClientRect().height
+    );
     this.itemScrollHeight = itemHeight;
     this.totalScrollHeight = itemHeight * this.items.length;
   }
@@ -56,10 +58,10 @@ export class FadeOnScroll extends ScrollAnimation {
 
   init(): boolean {
     if (this.scrollable === null) {
-      this.scrollable = this.context;
+      this.scrollable = this.container;
     }
 
-    this.context.classList.add(`${this.name}__container`);
+    this.container.classList.add(`${this.name}__container`);
 
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
