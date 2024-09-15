@@ -17,6 +17,9 @@ export abstract class ScrollAnimation implements ScrollAnimationStrategy {
 
   protected getScrollTop: GetScrollTopFn | null = null;
 
+  /** Resize observer */
+  protected observeResize: ResizeObserver | null = null;
+
   /** Throttle flag */
   private isProcessingY: boolean = false;
 
