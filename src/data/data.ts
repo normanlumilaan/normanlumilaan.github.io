@@ -1,45 +1,45 @@
-import { data as home } from "./pages/home";
-import { data as error404 } from "./pages/error404";
+import { data as home } from './pages/home'
+import { data as error404 } from './pages/error404'
 
 interface PageMeta {
   /** Page title */
-  title: string | null;
+  title: string | null
   /** Page short description */
-  description: string | null;
+  description: string | null
   /** Page image for e.g. open graph. Relative url to app home url. */
-  image: string | null;
+  image: string | null
   /** Page path */
-  path: string;
+  path: string
 }
 
 export interface PageData {
-  meta: PageMeta;
-  content: object | unknown[];
+  meta: PageMeta
+  content: object | unknown[]
 }
 
 export interface AppData {
-  name: string;
-  homeUrl: string;
-  email: string;
-  tagline: string;
+  name: string
+  homeUrl: string
+  email: string
+  tagline: string
 }
 
 export interface TemplateData {
-  app: AppData;
-  [key: string]: PageData | AppData;
+  app: AppData
+  [key: string]: PageData | AppData
 }
 
 export function getData(homeUrl: string): TemplateData {
-  if (typeof homeUrl !== "string" || homeUrl === "") {
-    throw new Error("'homeUrl' parameter not defined");
+  if (typeof homeUrl !== 'string' || homeUrl === '') {
+    throw new Error("'homeUrl' parameter not defined")
   }
 
   const app: AppData = {
-    name: "Norman Lumilaan",
+    name: 'Norman Lumilaan',
     homeUrl: homeUrl,
-    email: "diiselkytus@gmail.com",
+    email: 'diiselkytus@gmail.com',
     tagline: "Let's make great things together!",
-  };
+  }
 
   /**
    * The original idea was to create template data object by merging global app data
@@ -52,5 +52,5 @@ export function getData(homeUrl: string): TemplateData {
     app,
     home,
     error404,
-  };
+  }
 }

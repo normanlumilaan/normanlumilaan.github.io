@@ -1,1 +1,1 @@
-import "./animation/animateonscroll";
+import './animation/animateonscroll'

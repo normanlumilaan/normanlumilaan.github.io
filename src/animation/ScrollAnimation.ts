@@ -1,6 +1,6 @@
-"use strict";
+'use strict'
 
-import { type AnimationStrategy } from "./Animate";
+import { type AnimationStrategy } from './Animate'
 
 /**
  * Interface for scroll animation strategies.
@@ -11,12 +11,12 @@ export interface ScrollAnimationStrategy extends AnimationStrategy {
    * Animate elements based on vertical scroll position.
    * @param {number} scrollTop - The vertical scroll position.
    */
-  animateScrollY(scrollTop: number): void;
+  animateScrollY(scrollTop: number): void
 }
 
-type ScrollableElement = Window | Document | HTMLElement;
+type ScrollableElement = Window | Document | HTMLElement
 
-type GetScrollTopFn = () => number;
+type GetScrollTopFn = () => number
 
 /**
  * Abstract class for scroll-based animations.
@@ -24,19 +24,19 @@ type GetScrollTopFn = () => number;
  */
 export abstract class ScrollAnimation implements ScrollAnimationStrategy {
   /** The element that triggers the scroll event. */
-  protected scrollable: ScrollableElement | null = null;
+  protected scrollable: ScrollableElement | null = null
 
   /** Function to get the current vertical scroll position. */
-  protected getScrollTop: GetScrollTopFn | null = null;
+  protected getScrollTop: GetScrollTopFn | null = null
 
   /** Resize observer for handling element resizing. */
-  protected observeResize: ResizeObserver | null = null;
+  protected observeResize: ResizeObserver | null = null
 
   /** Flag to prevent multiple scroll events from being processed simultaneously. */
-  private isProcessingY: boolean = false;
+  private isProcessingY: boolean = false
 
   constructor() {
-    this.handleScrollY = this.handleScrollY.bind(this);
+    this.handleScrollY = this.handleScrollY.bind(this)
   }
 
   /**
@@ -46,14 +46,14 @@ export abstract class ScrollAnimation implements ScrollAnimationStrategy {
    */
   protected setGetScrollTop(element: ScrollableElement): GetScrollTopFn {
     if (element instanceof Window) {
-      return () => window.scrollY;
+      return () => window.scrollY
     } else if (element instanceof Document) {
-      return () => document.documentElement.scrollTop;
+      return () => document.documentElement.scrollTop
     } else if (element instanceof HTMLElement) {
-      return () => element.scrollTop;
+      return () => element.scrollTop
     }
 
-    return () => -1;
+    return () => -1
   }
 
   /**
@@ -62,11 +62,11 @@ export abstract class ScrollAnimation implements ScrollAnimationStrategy {
    * @private
    */
   private handleScrollY(): void {
-    if (this.isProcessingY) return;
-    this.isProcessingY = true;
-    const top = this.getScrollTop ? this.getScrollTop() : 0;
-    this.animateScrollY(top);
-    this.isProcessingY = false;
+    if (this.isProcessingY) return
+    this.isProcessingY = true
+    const top = this.getScrollTop ? this.getScrollTop() : 0
+    this.animateScrollY(top)
+    this.isProcessingY = false
   }
 
   /**
@@ -74,7 +74,7 @@ export abstract class ScrollAnimation implements ScrollAnimationStrategy {
    */
   onScrollY(): void {
     if (this.scrollable) {
-      this.scrollable.addEventListener("scroll", this.handleScrollY);
+      this.scrollable.addEventListener('scroll', this.handleScrollY)
     }
   }
 
@@ -83,7 +83,7 @@ export abstract class ScrollAnimation implements ScrollAnimationStrategy {
    */
   offScrollY(): void {
     if (this.scrollable) {
-      this.scrollable.removeEventListener("scroll", this.handleScrollY);
+      this.scrollable.removeEventListener('scroll', this.handleScrollY)
     }
   }
 
@@ -92,23 +92,23 @@ export abstract class ScrollAnimation implements ScrollAnimationStrategy {
    * @param {ScrollableElement} element - The element to listen for scroll events.
    */
   listenScrollYOn(element: ScrollableElement): void {
-    this.offScrollY();
-    this.scrollable = element;
-    this.getScrollTop = this.setGetScrollTop(element);
-    this.onScrollY();
+    this.offScrollY()
+    this.scrollable = element
+    this.getScrollTop = this.setGetScrollTop(element)
+    this.onScrollY()
   }
 
   /**
    * Abstract method to animate elements based on vertical scroll position.
    * @param {number} scrollTop - The vertical scroll position.
    */
-  abstract animateScrollY(scrollTop: number): void;
+  abstract animateScrollY(scrollTop: number): void
 
   /**
    * Abstract method to initialize the scroll animation.
    * @returns {boolean} Returns true if initialization is successful.
    */
-  abstract init(): boolean;
+  abstract init(): boolean
 }
 
-export default ScrollAnimation;
+export default ScrollAnimation

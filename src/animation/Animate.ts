@@ -1,4 +1,4 @@
-"use strict";
+'use strict'
 
 /**
  * Interface for defining animation strategies.
@@ -8,7 +8,7 @@ export interface AnimationStrategy {
    * Initializes the animation style.
    * @returns {boolean} Returns true if initialization is successful, otherwise false.
    */
-  init(): boolean;
+  init(): boolean
 }
 
 /**
@@ -16,7 +16,7 @@ export interface AnimationStrategy {
  */
 export class Animate {
   /** The current animation strategy. */
-  private animation: AnimationStrategy | null = null;
+  private animation: AnimationStrategy | null = null
 
   /**
    * Creates an instance of Animate with an optional initial animation strategy.
@@ -24,7 +24,7 @@ export class Animate {
    */
   constructor(animation?: AnimationStrategy) {
     if (animation) {
-      this.setAnimation(animation);
+      this.setAnimation(animation)
     }
   }
 
@@ -33,7 +33,7 @@ export class Animate {
    * @param {AnimationStrategy} animation - The animation strategy to set.
    */
   setAnimation(animation: AnimationStrategy): void {
-    this.animation = animation;
+    this.animation = animation
   }
 
   /**
@@ -42,12 +42,12 @@ export class Animate {
    */
   init(): boolean {
     if (this.animation === null) {
-      console.warn("Animation strategy is not defined.");
-      return false;
+      console.warn('Animation strategy is not defined.')
+      return false
     }
 
-    return this.animation.init();
+    return this.animation.init()
   }
 }
 
-export default Animate;
+export default Animate
