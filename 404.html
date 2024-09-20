@@ -1,16 +1,11 @@
 <!doctype html>
 <html lang="en-US">
-  <head>
-    <%- include('./src/templates/partials/head', error404.meta); %>
-    <%-
-    include('./src/templates/partials/seo', error404.meta); %>
-    <link rel="stylesheet" href="./src/index.css" />
-  </head>
-  <body>
-    <%- include('./src/templates/error404', error404); %>
-    <%-
-    include('./src/templates/partials/footer', app); %>
-    <%-
-    include('./src/templates/partials/svg-definitions'); %>
-  </body>
+<head>
+  <%- include('/partials/head'); %>
+  <%- include('/partials/seo'); %>
+  <link rel="stylesheet" href="./src/index.css" />
+</head>
+<body>
+  <%- include('/views/home'); %>
+</body>
 </html>

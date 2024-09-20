@@ -5,13 +5,15 @@ import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 import { getData } from './src/data/data'
 
+import { createHtmlPlugin } from 'vite-plugin-html'
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
   const port = parseInt(env.VITE_APP_PORT, 10) || undefined
-  const url = env.VITE_APP_HOME_URL
-  const homeUrl = mode === 'development' ? `${url}:${port}` : url
+  const url = env.VITE_APP_SITE_URL
+  const siteUrl = mode === 'development' ? `${url}:${port}` : url
 
   return {
     base: '/',
@@ -19,14 +21,25 @@ export default defineConfig(({ mode }) => {
       port: port,
       host: '0.0.0.0',
     },
-    build: {
-      rollupOptions: {
-        input: {
-          home: path.resolve(__dirname, 'index.html'),
-          page404: path.resolve(__dirname, '404.html'),
-        },
-      },
-    },
-    plugins: [ViteEjsPlugin(getData(homeUrl)), ViteMinifyPlugin({})],
+    plugins: [
+      createHtmlPlugin({
+        minify: true,
+        pages: getData(siteUrl).map((data) => {
+          console.log('>>>>', data)
+          return {
+            template: `${data.page.template}.html`,
+            filename: `${data.page.template}.html`,
+            injectOptions: {
+              data,
+              ejsOptions: {
+                root: path.join(__dirname, 'src', 'templates'),
+              },
+            },
+          }
+        }),
+      }),
+      //ViteEjsPlugin(getData(homeUrl)),
+      //ViteMinifyPlugin({}),
+    ],
   }
 })

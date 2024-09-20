@@ -1,0 +1,12 @@
+<!-- home-->
+<main class="main">
+
+  <% Array.isArray(page.content) && page.content.forEach((section) => { %>
+  <%= section.title %>
+  <% })%>
+
+  <%- include('/partials/footer', app); %>
+  <%- include('/partials/svg-definitions'); %>
+</main>
+
+<!-- /home-->
