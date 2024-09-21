@@ -1,11 +1,8 @@
 import { defineConfig, loadEnv } from 'vite'
-import { ViteMinifyPlugin } from 'vite-plugin-minify'
-import { ViteEjsPlugin } from 'vite-plugin-ejs'
+import { createHtmlPlugin } from 'vite-plugin-html'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 import { getData } from './src/data/data'
-
-import { createHtmlPlugin } from 'vite-plugin-html'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -35,8 +32,6 @@ export default defineConfig(({ mode }) => {
           },
         })),
       }),
-      //ViteEjsPlugin(getData(homeUrl)),
-      //ViteMinifyPlugin({}),
     ],
   }
 })
