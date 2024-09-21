@@ -2,7 +2,7 @@
 <main class="main">
 
   <% Array.isArray(page.content) && page.content.forEach((section) => { %>
-  <%= section.title %>
+  <%- include("/partials/section", section) %>
   <% })%>
 
   <%- include('/partials/footer', app); %>

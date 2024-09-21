@@ -1,3 +1,19 @@
 <!-- partials/section-->
-<div id="<%= id %>" class="section"></div>
+<div id="<%= id %>" class="section <%= id %>" aria-labelledby="<%= id %>-heading">
+  <div class="section__inner">
+    <div class="fake-ed">
+      <% if ( image !== null ) { %>
+      <figure class="section__fig intro__fig">
+        <img src="<%= image %>" width="200" height="200" alt="<%= title %>" class="section__fig-img" />
+      </figure>
+      <% } %>
+      <h1 class="section__heading" id="<%= id %>-heading">
+        <%= title %>
+      </h1>
+      <div class="section__body">
+        <%= content %>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- /partials/section-->
