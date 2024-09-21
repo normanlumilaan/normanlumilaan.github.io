@@ -1,0 +1,48 @@
+{
+  "title": "Let's make great things together!",
+  "slug": "",
+  "template": "index",
+  "image": "/img/og_img-1200x630.png",
+  "description": "Unleash the power of code and technology to achieve your dreams!",
+  "content": [
+    {
+      "title": "Norman Lumilaan",
+      "id": "intro",
+      "image": "/img/eye.png",
+      "content": null
+    },
+    {
+      "title": "Let's make great things together!",
+      "id": "info",
+      "image": null,
+      "content": "If you're ready to take your business to new heights, I’d be excited to connect and explore how we can collaborate. Let's unleash the power of code and technology to achieve your dreams!"
+    },
+    {
+      "title": "Services",
+      "id": "service",
+      "image": null,
+      "content": [
+        "TypeScript",
+        "Node.js",
+        "SCSS",
+        "Python",
+        "SQL",
+        "PHP",
+        "React"
+      ]
+    },
+    {
+      "title": "Contact",
+      "id": "contact",
+      "image": "/img/mouth.png",
+      "content": [
+        { "label": "Email", "url": "diiselkytus@gmail.com" },
+        {
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/in/norman-lumilaan/"
+        },
+        { "label": "GitHub", "url": "https://github.com/normanlumilaan" }
+      ]
+    }
+  ]
+}

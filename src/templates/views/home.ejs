@@ -1,0 +1,20 @@
+<!-- viws/home-->
+<main class="main">
+  <% page.content.forEach((section) => { %>
+  <% let sectionContent = ''; %>
+
+  <% if (section.id === "service") { %>
+  <% sectionContent = include("/partials/services-list", section) || ""; %>
+  <% } else if (section.id === "contact") { %>
+  <% sectionContent = include("/partials/contact-list", section) || ""; %>
+  <% } else { %>
+  <% sectionContent = section.content ? `<p>${section.content}</p>` : ""; %>
+  <% } %>
+
+  <%- include("/partials/section", { ...section, content: sectionContent }) %>
+  <% }) %>
+
+</main>
+<%- include('/partials/footer', app); %>
+<%- include('/partials/svg-definitions'); %>
+<!-- /views/home-->

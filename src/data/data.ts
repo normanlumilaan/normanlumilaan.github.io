@@ -1,56 +1,61 @@
-import { data as home } from './pages/home'
-import { data as error404 } from './pages/error404'
-
-interface PageMeta {
-  /** Page title */
-  title: string | null
-  /** Page short description */
-  description: string | null
-  /** Page image for e.g. open graph. Relative url to app home url. */
-  image: string | null
-  /** Page path */
-  path: string
-}
-
+import path from 'node:path'
+import fs from 'node:fs'
+import config from './app.json'
 export interface PageData {
-  meta: PageMeta
-  content: object | unknown[]
+  title: string
+  slug: string
+  template: string
+  description: string
+  content: any
 }
 
-export interface AppData {
+export interface ConfigData {
   name: string
-  homeUrl: string
+  siteUrl: string
   email: string
   tagline: string
 }
 
 export interface TemplateData {
-  app: AppData
-  [key: string]: PageData | AppData
+  app: ConfigData
+  page: PageData
 }
 
-export function getData(homeUrl: string): TemplateData {
-  if (typeof homeUrl !== 'string' || homeUrl === '') {
-    throw new Error("'homeUrl' parameter not defined")
+export function readJsonFileSync<T>(filePath: string): T | null {
+  try {
+    const fileContent = fs.readFileSync(filePath, 'utf8')
+    return JSON.parse(fileContent) as T
+  } catch (error) {
+    console.error(`Error reading or parsing JSON from file: ${filePath}`, error)
+    return null
+  }
+}
+
+export function readDirAndParseJsonSync(dirPath: string): PageData[] {
+  const resultArray: PageData[] = []
+  try {
+    const items = fs.readdirSync(dirPath)
+
+    items.forEach((item) => {
+      const fullPath = path.join(dirPath, item)
+      const stats = fs.statSync(fullPath)
+
+      if (stats.isFile() && path.extname(item) === '.json') {
+        const parsedJson = readJsonFileSync<any>(fullPath)
+        if (parsedJson) {
+          resultArray.push(parsedJson)
+        }
+      }
+    })
+  } catch (error) {
+    console.error(`Error reading directory: ${dirPath}`, error)
   }
 
-  const app: AppData = {
-    name: 'Norman Lumilaan',
-    homeUrl: homeUrl,
-    email: 'diiselkytus@gmail.com',
-    tagline: "Let's make great things together!",
-  }
+  return resultArray
+}
 
-  /**
-   * The original idea was to create template data object by merging global app data
-   * and requested page data (e.g. home) objects and then passing it to template rendering,
-   * nothing unheard right? Since current implementation of vite-plugin-ejs
-   * takes whole data object at once (thus making all data available to templates at
-   * all times, no isolation ☹️ ) there is no point to duplicate app object in each page.
-   */
-  return {
-    app,
-    home,
-    error404,
-  }
+export function getData(siteUrl: string): TemplateData[] {
+  const data = readDirAndParseJsonSync(path.resolve(__dirname, 'content'))
+  config.siteUrl = siteUrl
+  return data.map((page) => ({ app: config, page: page }))
 }

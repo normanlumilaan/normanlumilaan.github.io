@@ -1,0 +1,13 @@
+{
+  "title": "Page not found",
+  "slug": "",
+  "template": "404",
+  "image": "/img/og_img-1200x630.png",
+  "description": "Page not found",
+  "content": {
+    "title": "404 Not Found :(",
+    "id": "error-404",
+    "image": null,
+    "content": "Sometimes things don’t go as planned, and that’s perfectly fine. Take a deep breath. We’re here to guide you back. 🌻"
+  }
+}

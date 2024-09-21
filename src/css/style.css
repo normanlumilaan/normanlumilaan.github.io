@@ -130,13 +130,13 @@ svg {
 .main {
   flex-grow: 1;
   position: relative;
+  display: flex;
+  flex-direction: row;
 }
 
 .section {
   background-color: var(--color-primary-light);
-  height: 500px;
   width: 100%;
-  min-height: 100vh;
   overflow: hidden;
 }
 
