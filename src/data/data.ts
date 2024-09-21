@@ -5,7 +5,7 @@ export interface PageData {
   title: string
   slug: string
   template: string
-  description?: string
+  description: string
   content: any
 }
 

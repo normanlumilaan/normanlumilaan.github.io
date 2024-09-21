@@ -24,19 +24,16 @@ export default defineConfig(({ mode }) => {
     plugins: [
       createHtmlPlugin({
         minify: true,
-        pages: getData(siteUrl).map((data) => {
-          console.log('>>>>', data)
-          return {
-            template: `${data.page.template}.html`,
-            filename: `${data.page.template}.html`,
-            injectOptions: {
-              data,
-              ejsOptions: {
-                root: path.join(__dirname, 'src', 'templates'),
-              },
+        pages: getData(siteUrl).map((data) => ({
+          template: `${data.page.template}.html`,
+          filename: `${data.page.template}.html`,
+          injectOptions: {
+            data,
+            ejsOptions: {
+              root: path.join(__dirname, 'src', 'templates'),
             },
-          }
-        }),
+          },
+        })),
       }),
       //ViteEjsPlugin(getData(homeUrl)),
       //ViteMinifyPlugin({}),
