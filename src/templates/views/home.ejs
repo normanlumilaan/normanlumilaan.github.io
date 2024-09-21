@@ -1,7 +1,12 @@
 <!-- viws/home-->
 <main class="main">
   <% Array.isArray(page.content) && page.content.forEach((section) => { %>
+  <% if ( section.id === "service" ) { %>
+  <% } else if ( section.id === "contact" ) { %>
+  <%- include("/partials/section", { ...section, content: include("/partials/contact-list", section) }) %>
+  <% } else { %>
   <%- include("/partials/section", section) %>
+  <% } %>
   <% })%>
 </main>
 <%- include('/partials/footer', app); %>
