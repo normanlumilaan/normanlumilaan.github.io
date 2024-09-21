@@ -1,6 +1,14 @@
 <!-- views/404 -->
 <main class="main">
-  <%- include("/partials/section", page.content); %>
+  <%- include("/partials/section", { 
+    ...page.content, 
+    content: `${"<p>" + page.content.content + "</p>" || ''}
+      <a
+        aria-label="Go to index page"
+        title="Go to index page"
+        href="${app.homeUrl}"
+      >Home</a>`
+}) %>
 </main>
 <%- include('/partials/footer', app); %>
 <%- include('/partials/svg-definitions'); %>
