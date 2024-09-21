@@ -1,14 +1,19 @@
 <!-- viws/home-->
 <main class="main">
-  <% Array.isArray(page.content) && page.content.forEach((section) => { %>
-  <% if ( section.id === "service" ) { %>
-  <%- include("/partials/section", { ...section, content: include("/partials/services-list", section) }) %>
-  <% } else if ( section.id === "contact" ) { %>
-  <%- include("/partials/section", { ...section, content: include("/partials/contact-list", section) }) %>
-  <% } else { %>
-  <%- include("/partials/section", section) %>
+  <% page.content.forEach((section) => { %>
+  <% let sectionContent = ''; %>
+
+  <% if (section.id === "service") { %>
+  <% sectionContent = include("/partials/services-list", section) || ""; %>
+  <% } else if (section.id === "contact") { %>
+  <% sectionContent = include("/partials/contact-list", section) || ""; %>
+  <% } else { %>
+  <% sectionContent = section.content ? `<p>${section.content}</p>` : ""; %>
   <% } %>
-  <% })%>
+
+  <%- include("/partials/section", { ...section, content: sectionContent }) %>
+  <% }) %>
+
 </main>
 <%- include('/partials/footer', app); %>
 <%- include('/partials/svg-definitions'); %>
