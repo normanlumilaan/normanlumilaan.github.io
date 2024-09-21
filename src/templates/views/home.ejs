@@ -2,6 +2,7 @@
 <main class="main">
   <% Array.isArray(page.content) && page.content.forEach((section) => { %>
   <% if ( section.id === "service" ) { %>
+  <%- include("/partials/section", { ...section, content: include("/partials/services-list", section) }) %>
   <% } else if ( section.id === "contact" ) { %>
   <%- include("/partials/section", { ...section, content: include("/partials/contact-list", section) }) %>
   <% } else { %>
