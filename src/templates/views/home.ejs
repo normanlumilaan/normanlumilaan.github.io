@@ -1,12 +1,9 @@
-<!-- home-->
+<!-- viws/home-->
 <main class="main">
-
   <% Array.isArray(page.content) && page.content.forEach((section) => { %>
   <%- include("/partials/section", section) %>
   <% })%>
-
-  <%- include('/partials/footer', app); %>
-  <%- include('/partials/svg-definitions'); %>
 </main>
-
-<!-- /home-->
+<%- include('/partials/footer', app); %>
+<%- include('/partials/svg-definitions'); %>
+<!-- /views/home-->
