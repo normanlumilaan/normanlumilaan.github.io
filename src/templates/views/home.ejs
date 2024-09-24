@@ -11,7 +11,11 @@
   <% sectionContent = section.content ? `<p>${section.content}</p>` : ""; %>
   <% } %>
 
-  <%- include("/partials/section", { ...section, content: sectionContent }) %>
+  <%- include("/partials/section", { 
+    ...section, 
+    attr: { className: "fade-on-scroll__frame"}, 
+    content: sectionContent }
+  ) %>
   <% }) %>
 
 </main>
